@@ -5,7 +5,11 @@ export default class Menu extends Component {
     render() {
         return (
             <div>
-                lol
+                <ul className="menu-ul">
+                    <li>Stats</li>
+                    <li>History</li>
+                    <li>Profile</li>
+                </ul>
             </div>
         )
     }

@@ -4,6 +4,10 @@
     margin: 0;
 }
 
+
+
+
+/*--------------NAVBAR-----------------*/
 .navbar {
     display: block;
     width: 100vw;
@@ -21,23 +25,39 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    height: 70%;
+    height: 40%;
     width: auto;
 }
 
 .hamburger-icon {
     position: relative;
     top: 50%;
-    right: 10%;
-    transform: translateY(-50%);
-    height: 70%;
+    left: 10%;
+    transform: translate(-50%, -50%);
+    height: 40%;
     width: auto;
-
 }
+/*-------------------------------------*/
 
+
+
+
+
+/*---------------MENU------------------*/
 .menu {
     display: block;
-    width: 100vw;
-    height: 90vh;
+/*    width: 100vw;
+    height: 90vh;*/
     background-color: aqua;
+}
+
+.menu-ul {
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+
+.menu-ul > li {
+    padding: 1em;
+    font-size: 1.5em;
 }
