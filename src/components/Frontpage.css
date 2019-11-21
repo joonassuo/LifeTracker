@@ -1,0 +1,43 @@
+.app {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+}
+
+.navbar {
+    display: block;
+    width: 100vw;
+    height: 10vh;
+    background-color: antiquewhite;
+}
+
+.navbar-container {
+    height: 100%;
+    width: 100%;
+}
+
+.logo {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 70%;
+    width: auto;
+}
+
+.hamburger-icon {
+    position: relative;
+    top: 50%;
+    right: 10%;
+    transform: translateY(-50%);
+    height: 70%;
+    width: auto;
+
+}
+
+.menu {
+    display: block;
+    width: 100vw;
+    height: 90vh;
+    background-color: aqua;
+}

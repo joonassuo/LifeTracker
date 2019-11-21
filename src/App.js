@@ -1,13 +1,13 @@
 import React from 'react';
-import './App.css';
-import './components/Test.js';
+//import { BrowserRouter as Router, Route } from 'react-router-dom';
+import FrontPage from './components/Frontpage.js'
 
 function App() {
   return (
     <div>
-      Hello World!
+      <FrontPage />
     </div>
-  );
+  )
 }
 
 export default App;
