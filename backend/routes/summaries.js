@@ -3,17 +3,17 @@ let Summary = require('../models/daily.summary.model');
 
 router.route('/').get((req, res) => {
     Summary.find()
-        .then(summaries => res.json())
+        .then(summaries => res.json(summaries))
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
+// ROUTE TO ADD A SUMMARY
 router.route('/add').post((req, res) => {
     let r = req.body;
     const username = r.username; 
     const nicotine = Number(r.nicotine);
-    const excersice = r.excersice;
-    const sport = r.sport;
-    const duration = r.duration;
+    const excersice_duration = r.excersice_duration;
+    const excersice_sport = r.excersice_sport;
     const meditation = Number(r.meditation);
     const mood = Number(r.mood);
     const date = Date.parse(r.date);
@@ -21,9 +21,8 @@ router.route('/add').post((req, res) => {
     const newSummary = new Summary({
         username,
         nicotine,
-        excersice,
-        sport,
-        duration,
+        excersice_duration,
+        excersice_sport,
         meditation,
         mood,
         date
@@ -33,5 +32,39 @@ router.route('/add').post((req, res) => {
         .then(() => res.json('New summary added!'))
         .catch((err) => res.status(400).json('Error: ' + err));
 });
+
+// ROUTE TO GET A SUMMARY WITH ID
+router.route('/:id').get((req, res) => {
+    Summary.findById(req.params.id)
+        .then(excersice => res.json(excersice))
+        .catch((err) => res.status(400).json('Error: ' + err));
+});
+
+// ROUTE TO DELETE A SUMMARY WITH ID
+router.route('/:id').delete((req, res) => {
+    Summary.findByIdAndDelete(req.params.id)
+        .then(() => res.json('Summary deleted !'))
+        .catch((err) => res.status(400).json('Error: ' + err));
+})
+
+// ROUTE TO UPDATE A SUMMARY WITH ID
+router.route('/:id').post((req, res) => {
+    let r = req.body;
+    Summary.findById(req.params.id)
+        .then(summary => {
+            summary.username = r.username,
+            summary.nicotine = Number(r.nicotine),
+            summary.excersice_duration = Number(r.excersice_duration),
+            summary.excersice_sport = r.excersice_sport,
+            summary.meditation = Number(r.meditation),
+            summary.mood = Number(r.mood),
+            summary.date = Date.parse(r.date)
+
+            summary.save()
+                .then(() => res.json('Summary updated!'))
+                .catch((err) => res.status(400).json('Error: ' + err));
+        })
+})
+
 
 module.exports = router;
