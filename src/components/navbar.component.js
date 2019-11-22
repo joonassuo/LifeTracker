@@ -5,13 +5,16 @@ export default class Navbar extends Component {
     render() {
         return (
             <div className="navbar-container">
-                <img 
-                    src="/menu.png" 
-                    alt="hamburger" 
-                    className="hamburger-icon"
-                    onClick={this.props.toggle}
-                />
-                <img src="/like.png" alt="logo" className="logo"/>
+                <div className="hamburger-icon">
+                    <img 
+                        src="/menu.png" 
+                        alt="hamburger" 
+                        onClick={this.props.toggle}
+                    />
+                </div>
+                <div className="logo">
+                    <img src="/like.png" alt="logo"/>
+                </div>
             </div>
         )
     }

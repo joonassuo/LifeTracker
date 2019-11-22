@@ -18,24 +18,24 @@
 .navbar-container {
     height: 100%;
     width: 100%;
-}
-
-.logo {
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    height: 40%;
-    width: auto;
+    display: grid;
+    grid-template-columns: 20vw 60vw 20vw;
+    align-items: center;
 }
 
 .hamburger-icon {
-    position: relative;
-    top: 50%;
-    left: 10%;
-    transform: translate(-50%, -50%);
-    height: 40%;
-    width: auto;
+    grid-column: 1;
+    text-align: center;
+}
+
+.logo {
+    grid-column: 2;
+    text-align: center;
+}
+
+img {
+    width: 2em;
+    height: auto;
 }
 /*-------------------------------------*/
 
@@ -46,8 +46,6 @@
 /*---------------MENU------------------*/
 .menu {
     display: block;
-/*    width: 100vw;
-    height: 90vh;*/
     background-color: aqua;
 }
 
@@ -60,4 +58,5 @@
 .menu-ul > li {
     padding: 1em;
     font-size: 1.5em;
+    border-bottom: 1px solid grey;
 }

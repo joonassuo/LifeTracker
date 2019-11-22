@@ -8,7 +8,24 @@ const userSchema = new Schema({
         unique: true,
         trim: true,
         minlength: 3,
-        maxlength: 10
+        maxlength: 10,
+        default: ''
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+        default: ''
+    },
+    password: {
+        type: String,
+        required: true,
+        minlength: 6,
+        default: ''
+    },
+    isDeleted: {
+        type: Boolean,
+        default: false
     }
 }, {
     timestamps: true,
