@@ -19,6 +19,9 @@ export default class Signup extends Component {
                         <div className="s-password-container fullwidth">
                             <input id="s-password" type="password" placeholder="Password"/>
                         </div>
+                        <div className="s-confirm-container fullwidth">
+                            <input id="s-confirm" type="password" placeholder="Confirm Password"/>
+                        </div>
                         <div className="s-signup-button-container fullwidth"> 
                             <button id="s-signup-button">
                                 SIGNUP
