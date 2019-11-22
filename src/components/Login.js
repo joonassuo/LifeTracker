@@ -22,7 +22,7 @@ export default class Login extends Component {
                             </button>
                         </div>
                         <div className="text-container">
-                            sign-up?<br/>forgot password?
+                            Don't have an account?
                         </div>
                     </div>
                 </div>
