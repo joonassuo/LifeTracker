@@ -1,9 +1,19 @@
+.grid-center {
+    justify-self: center;
+    align-self: center;
+}
+
+.grid-stretch {
+    justify-self: stretch;
+    align-self: stretch;
+}
+
 .login-screen {
     width: 100vw;
     height: 100vh;
     margin: 0;
-    background-color: grey;
-    text-align: center;
+    background: rgb(238,174,202);
+    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);    text-align: center;
 }
 
 .grid-container {
@@ -11,7 +21,7 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 80vw;
+    width: 70vw;
     height: 80vh;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -28,7 +38,51 @@
     height: 100%;
 }
 
-.login-container {
+.username-container {
+    grid-row: 2/3;
+    grid-column: 1/4;
+    background-color: rgba(136, 148, 136, 0.3);
+    border-radius: 10px 10px 0 0;
+    margin-bottom: 2px !important;
+}
+
+.password-container {
     grid-row: 3/4;
+    grid-column: 1/4;
+    background-color: rgba(136, 148, 136, 0.3);
+    border-radius: 0 0 10px 10px;
+}
+
+input[type=text],
+input[type=password] {
+    border: none;
+    background-color: rgb(255, 255, 255, 0);
+    background-image: url('/like.png');
+    background-size: 7%;
+    background-position: 3%;
+    background-repeat: no-repeat;
+    padding-left: 15%;
+    width: 80%;
+    height: 40%;
+    margin-top: 1.4%;
+}
+
+
+
+.login-button-container {
+    grid-row: 5/6;
+    grid-column: 1/4;
+}
+
+#login-button {
+    font-size: 1.5em;
+    width: 70%;
+    height: 100%;
+    background-color: green;
+    border-radius: 20%;
+}
+
+.text-container {
+    grid-row: 7;
     grid-column: 1/4;
 }

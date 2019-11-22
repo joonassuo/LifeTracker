@@ -10,9 +10,11 @@ export default class Login extends Component {
                         <div className="logo-container fullwidth">
                             <img src="/logo.png" alt="" id="logo"/>
                         </div>
-                        <div className="login-container fullwidth">
+                        <div className="username-container fullwidth">
                             <input id="username" type="text" placeholder="username"/>
-                            <input id="password" type="text" placeholder="password"/>
+                        </div>
+                        <div className="password-container">
+                            <input id="password" type="password" placeholder="password"/>
                         </div>
                         <div className="login-button-container fullwidth">
                             <button id="login-button">
