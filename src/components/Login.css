@@ -9,6 +9,7 @@
 }
 
 .login-screen {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
     width: 100vw;
     height: 100vh;
     margin: 0;
@@ -42,7 +43,7 @@
     grid-row: 2/3;
     grid-column: 1/4;
     background-color: rgba(136, 148, 136, 0.3);
-    border-radius: 10px 10px 0 0;
+    border-radius: 15px 15px 0 0;
     margin-bottom: 2px !important;
 }
 
@@ -50,11 +51,14 @@
     grid-row: 3/4;
     grid-column: 1/4;
     background-color: rgba(136, 148, 136, 0.3);
-    border-radius: 0 0 10px 10px;
+    border-radius: 0 0 15px 15px;
 }
 
 input[type=text],
 input[type=password] {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
     border: none;
     background-color: rgb(255, 255, 255, 0);
     background-image: url('/like.png');
@@ -63,11 +67,9 @@ input[type=password] {
     background-repeat: no-repeat;
     padding-left: 15%;
     width: 80%;
-    height: 40%;
-    margin-top: 1.4%;
+    height: 70%;
+    font-size: 1em;
 }
-
-
 
 .login-button-container {
     grid-row: 5/6;
@@ -75,11 +77,13 @@ input[type=password] {
 }
 
 #login-button {
-    font-size: 1.5em;
+    border: none;
+    color: white;
+    font-size: 1.2em;
     width: 70%;
     height: 100%;
-    background-color: green;
-    border-radius: 20%;
+    background-color: rgba(46, 189, 46, 0.8);
+    border-radius: 20px;
 }
 
 .text-container {
