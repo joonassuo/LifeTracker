@@ -79,6 +79,18 @@ input[type=password] {
     font-size: 1em;
 }
 
+#s-username {
+    background-image: url('/user.png');
+}
+
+#s-password {
+    background-image: url('/key.png');
+}
+
+#s-email {
+    background-image: url('/email.png');
+}
+
 .s-signup-button-container {
     grid-row: 6/7;
     grid-column: 1/4;
@@ -91,5 +103,5 @@ input[type=password] {
     width: 70%;
     height: 100%;
     background-color: rgba(46, 189, 46, 0.8);
-    border-radius: 20px;
+    border-radius: 15px;
 }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './Login.css';
 
 export default class Login extends Component {
@@ -21,9 +22,11 @@ export default class Login extends Component {
                                 LOGIN
                             </button>
                         </div>
-                        <div className="text-container">
-                            Don't have an account?
-                        </div>
+                            <div className="text-container">
+                                <Link to='/signup'>
+                                    Don't have an account?
+                                </Link>
+                            </div>
                     </div>
                 </div>
             </div>

@@ -61,7 +61,6 @@ input[type=password] {
     transform: translateY(-50%);
     border: none;
     background-color: rgb(255, 255, 255, 0);
-    background-image: url('/like.png');
     background-size: 7%;
     background-position: 3%;
     background-repeat: no-repeat;
@@ -69,6 +68,14 @@ input[type=password] {
     width: 80%;
     height: 70%;
     font-size: 1em;
+}
+
+#username {
+    background-image: url('/user.png');
+}
+
+#password {
+    background-image: url('/key.png');
 }
 
 .login-button-container {
@@ -83,7 +90,7 @@ input[type=password] {
     width: 70%;
     height: 100%;
     background-color: rgba(46, 189, 46, 0.8);
-    border-radius: 20px;
+    border-radius: 15px;
 }
 
 .text-container {
