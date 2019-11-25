@@ -13,6 +13,8 @@ app.use(express.json());
 const uri = process.env.ATLAS_URI;
 mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true });
 const connection = mongoose.connection;
+
+//if connection to mongo fails, add 'error', else:
 connection.once('open', () => {
     console.log("MongoDB connection established successfully!");
 })
@@ -25,4 +27,4 @@ app.use('/summaries', summariesRouter);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port: ${PORT}`);
-}); 
+});

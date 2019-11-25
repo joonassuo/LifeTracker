@@ -56,8 +56,10 @@ export default class Signup extends Component {
             password: this.state.password,
             creationDate: this.state.creationDate
         }
+        console.log(newUser);
         axios.post('http://localhost:5000/users/add', newUser)
-            .then(res => console.log(res.data)); 
+            .then(res => console.log(res.data))
+            .catch(() => console.log('Error!'));
     }
 
     render() {
