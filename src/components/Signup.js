@@ -11,11 +11,13 @@ export default class Signup extends Component {
         this.onChangePassword = this.onChangePassword.bind(this);
         this.onChangeCreationDate = this.onChangeCreationDate.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.validateData = this.validateData.bind(this);
 
         this.state = {
             email: '',
             username: '',
             password: '',
+            passwordConfirm: '',
             creationDate: new Date()
         }
     }
@@ -41,6 +43,13 @@ export default class Signup extends Component {
         });
     }
 
+    onChangePasswordConfirm = (e) => {
+        e.preventDefault();
+        this.setState({
+            passwordConfirm: e.target.value
+        });
+    }
+
     onChangeCreationDate = (date) => {
         date.preventDefault();
         this.setState({
@@ -48,18 +57,42 @@ export default class Signup extends Component {
         });
     }
 
+    validateData = () => {
+        let password = document.getElementById("s-password");
+        let confirm = document.getElementById("s-confirm");
+        let username = document.getElementById("s-username");
+        let errorMessage = document.getElementById("error-message");
+        if (this.state.password.length < 6) {
+            password.value = '';
+            confirm.value = '';
+            errorMessage.innerHTML = 'Password should be at least 6 characters';
+            return false;
+        } else if (this.state.password !== this.state.passwordConfirm) {
+            password.value = '';
+            confirm.value = '';
+            errorMessage.innerHTML = "Passwords don't match";
+        } else if (this.state.username.length < 3) {
+            username.value = '';
+            errorMessage.innerHTML = "Username should be at least 3 characters";
+        } else {
+            return true;
+        }
+    }
+
     onSubmit = (e) => {
         e.preventDefault();
-        const newUser = {
-            email: this.state.email,
-            username: this.state.username,
-            password: this.state.password,
-            creationDate: this.state.creationDate
+        if (this.validateData() === true) {
+            const newUser = {
+                email: this.state.email,
+                username: this.state.username,
+                password: this.state.password,
+                creationDate: this.state.creationDate
+            }
+            console.log(newUser);
+            axios.post('http://localhost:5000/users/add', newUser)
+                .then(res => console.log(res.data))
+                .catch(() => console.log('Error!'));
         }
-        console.log(newUser);
-        axios.post('http://localhost:5000/users/add', newUser)
-            .then(res => console.log(res.data))
-            .catch(() => console.log('Error!'));
     }
 
     render() {
@@ -92,8 +125,13 @@ export default class Signup extends Component {
                                 onChange={this.onChangePassword}/>
                         </div>
                         <div className="s-confirm-container fullwidth">
-                            <input id="s-confirm" type="password" placeholder="Confirm Password"/>
+                            <input 
+                                id="s-confirm"
+                                type="password"
+                                placeholder="Confirm Password"
+                                onChange={this.onChangePasswordConfirm}/>
                         </div>
+                        <div id="error-message" className="grid-center"></div>
                         <div className="s-signup-button-container fullwidth"> 
                             <button id="s-signup-button" onClick={this.onSubmit}>
                                 SIGNUP

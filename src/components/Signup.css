@@ -103,6 +103,13 @@ input[type=password] {
     grid-column: 1/4;
 }
 
+#error-message {
+    grid-column: 1/4;
+    grid-row: 6/7;
+    color: red;
+    font-size: 0.9em;
+}
+
 #s-signup-button {
     border: none;
     color: white;
