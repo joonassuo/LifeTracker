@@ -23,9 +23,9 @@ const userSchema = new Schema({
         minlength: 6,
         default: ''
     },
-    isDeleted: {
-        type: Boolean,
-        default: false
+    creationDate: {
+        type: Date,
+        default: Date.now()
     }
 }, {
     timestamps: true,
