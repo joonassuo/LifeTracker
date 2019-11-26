@@ -18,8 +18,23 @@ export default class Signup extends Component {
             username: '',
             password: '',
             passwordConfirm: '',
-            creationDate: new Date()
+            creationDate: new Date(),
+            usersArray: [],
+            emailsArray: []
         }
+    }
+
+    componentDidMount() {
+        axios.get('http://localhost:5000/users')
+            .then(res => {
+                this.setState({
+                    usersArray: res.data.map(user => user.username),
+                    emailsArray: res.data.map(email => email.email)
+                })
+            })
+            .catch((error) => {
+                console.log(error);
+            })
     }
 
     onChangeEmail = (e) => {
@@ -61,7 +76,9 @@ export default class Signup extends Component {
         let password = document.getElementById("s-password");
         let confirm = document.getElementById("s-confirm");
         let username = document.getElementById("s-username");
+        let email = document.getElementById("s-email");
         let errorMessage = document.getElementById("error-message");
+
         if (this.state.password.length < 6) {
             password.value = '';
             confirm.value = '';
@@ -74,7 +91,14 @@ export default class Signup extends Component {
         } else if (this.state.username.length < 3) {
             username.value = '';
             errorMessage.innerHTML = "Username should be at least 3 characters";
+        } else if (this.state.usersArray.includes(this.state.username)){
+            username.value = '';
+            errorMessage.innerHTML = "Username already exists";
+        } else if (this.state.emailsArray.includes(this.state.email)){
+            email.value = '';
+            errorMessage.innerHTML = "An account with given email already exists";
         } else {
+            errorMessage.innerHTML = "";
             return true;
         }
     }
@@ -91,7 +115,8 @@ export default class Signup extends Component {
             console.log(newUser);
             axios.post('http://localhost:5000/users/add', newUser)
                 .then(res => console.log(res.data))
-                .catch(() => console.log('Error!'));
+                .catch(() => console.log('Error!'))
+                .then(() => window.location = '/')
         }
     }
 
