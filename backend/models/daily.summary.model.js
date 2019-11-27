@@ -4,8 +4,8 @@ const Schema = mongoose.Schema;
 const dailySummarySchema = new Schema({
     username: { type: String, required: true },
     nicotine: { type: Number, required: true },
-    excersice_duration: { type: Number, required: true },
-    excersice_sport: { type: String, required: false, trim: true },
+    excersice: { type: Number, required: true },
+    sleep: { type: Number, required: true },
     meditation: { type: Number, required: true },
     mood: { type: Number, required: true },
     date: { type: Date, required: true}
