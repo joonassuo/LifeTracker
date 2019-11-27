@@ -6,13 +6,13 @@ const UserSessionSchema = new Schema({
         type: String,
         default: ''
     },
+    username: {
+        type: String,
+        default: ''
+    },
     timestamp: {
         type: Date,
         default: Date.now()
-    },
-    isDeleted: {
-        type: Boolean,
-        default: false
     }
 });
 

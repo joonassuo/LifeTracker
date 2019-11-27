@@ -42,14 +42,14 @@ export default class Login extends Component {
             message.innerHTML = "Wrong username or password";
         } else {
             if (this.state.password === user.password) {
-                /*const newSession = {
+                const newSession = {
                     userId: user._id,
+                    username: user.username,
                     timestamp: Date.now()
                 }
                 axios.post('http://localhost:5000/usersession/add', newSession)
                     .then(res => console.log(res))
-                    .catch(err => console.log('Error : ' + err))*/
-                this.props.update("joonas");
+                    .catch(err => console.log('Error : ' + err))
                 window.location = '/home';
             } else {
                 password.value = "";

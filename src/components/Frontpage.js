@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-//import { BrowserRouter as Router, Route } from 'react-router-dom';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 import './Frontpage.css';
 import Navbar from './navbar.component.js';
 import Menu from './menu.component.js'
@@ -10,10 +11,27 @@ export default class FrontPage extends Component {
     super(props);
 
     this.state = {
-      showHamburger: false
+      showHamburger: false,
+      userId: "",
+      username: ""
     }
 
     this.toggleHamburger = this.toggleHamburger.bind(this);
+  }
+
+  componentDidMount() {
+    let user;
+    axios.get('http://localhost:5000/usersession')
+      .then(res => {
+        user = res.data.slice(-1)[0];
+        this.setState({
+          userId: user.userId,
+          username: user.username
+        });
+      })
+      .catch(err => {
+        console.log('Error : ' + err);
+      })
   }
 
   toggleHamburger = (event) => {
@@ -22,7 +40,7 @@ export default class FrontPage extends Component {
       showHamburger: !this.state.showHamburger
     })
   }
-  
+
   render() {
     return (
       <div>
@@ -40,8 +58,19 @@ export default class FrontPage extends Component {
             ) : ( null )
           }
           </div>
-          <div className="test">
-            {this.props.user}
+          <div className="homescreen-grid">
+            <div className="welcome">
+              Welcome,
+            </div>
+            <div className="name">
+              {this.state.username}
+            </div>
+            <div className="add-summary">
+              add summary
+            </div>
+            <Link className="button-container" to='/summaries/add'>
+              <button className="add-btn"></button>
+            </Link>
           </div>
         </div>
       </div>
