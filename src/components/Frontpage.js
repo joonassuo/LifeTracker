@@ -22,7 +22,7 @@ export default class FrontPage extends Component {
       showHamburger: !this.state.showHamburger
     })
   }
-
+  
   render() {
     return (
       <div>
@@ -30,6 +30,7 @@ export default class FrontPage extends Component {
           <div className="navbar">
             <Navbar toggle={this.toggleHamburger}/>
           </div>
+          <div>
           {
             this.state.showHamburger ?
             (
@@ -38,6 +39,10 @@ export default class FrontPage extends Component {
               </div>
             ) : ( null )
           }
+          </div>
+          <div className="test">
+            {this.props.user}
+          </div>
         </div>
       </div>
     ) 

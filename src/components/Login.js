@@ -35,13 +35,21 @@ export default class Login extends Component {
         let message = document.getElementById("error-message-l");
         let username = document.getElementById("username");
         let password = document.getElementById("password");
-        const test = this.state.usersArray.find(user => user.username === this.state.username);
-        if(!test) {
+        const user = this.state.usersArray.find(user => user.username === this.state.username);
+        if(!user) {
             username.value = "";
             password.value = "";
             message.innerHTML = "Wrong username or password";
         } else {
-            if (this.state.password === test.password) {
+            if (this.state.password === user.password) {
+                /*const newSession = {
+                    userId: user._id,
+                    timestamp: Date.now()
+                }
+                axios.post('http://localhost:5000/usersession/add', newSession)
+                    .then(res => console.log(res))
+                    .catch(err => console.log('Error : ' + err))*/
+                this.props.update("joonas");
                 window.location = '/home';
             } else {
                 password.value = "";
@@ -49,7 +57,6 @@ export default class Login extends Component {
                 message.innerHTML = "Wrong username or password";
             }
         }
-        console.log(test);
     }
 
     onChangeUsername = (e) => {

@@ -40,31 +40,4 @@ router.route('/:id').get((req, res) => {
         .catch((err) => res.status(400).json('Error: ' + err));
 });
 
-// ROUTE TO DELETE A SUMMARY WITH ID
-router.route('/:id').delete((req, res) => {
-    Summary.findByIdAndDelete(req.params.id)
-        .then(() => res.json('Summary deleted !'))
-        .catch((err) => res.status(400).json('Error: ' + err));
-})
-
-// ROUTE TO UPDATE A SUMMARY WITH ID
-router.route('/:id').post((req, res) => {
-    let r = req.body;
-    Summary.findById(req.params.id)
-        .then(summary => {
-            summary.username = r.username,
-            summary.nicotine = Number(r.nicotine),
-            summary.excersice_duration = Number(r.excersice_duration),
-            summary.excersice_sport = r.excersice_sport,
-            summary.meditation = Number(r.meditation),
-            summary.mood = Number(r.mood),
-            summary.date = Date.parse(r.date)
-
-            summary.save()
-                .then(() => res.json('Summary updated!'))
-                .catch((err) => res.status(400).json('Error: ' + err));
-        })
-})
-
-
 module.exports = router;
