@@ -5,7 +5,8 @@ const dailySummarySchema = new Schema({
     username: { type: String, required: true },
     nicotine: { type: Number, required: true },
     excersice: { type: Number, required: true },
-    sleep: { type: Number, required: true },
+    sleep_start: { type: Number, required: true },
+    sleep_stop: { type: Number, required: true },
     meditation: { type: Number, required: true },
     mood: { type: Number, required: true },
     date: { type: Date, required: true}

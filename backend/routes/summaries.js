@@ -12,8 +12,9 @@ router.route('/add').post((req, res) => {
     let r = req.body;
     const username = r.username; 
     const nicotine = Number(r.nicotine);
-    const excersice_duration = r.excersice_duration;
-    const excersice_sport = r.excersice_sport;
+    const excersice = r.excersice;
+    const sleep_start = r.sleep_start;
+    const sleep_stop = r.sleep_stop;
     const meditation = Number(r.meditation);
     const mood = Number(r.mood);
     const date = Date.parse(r.date);
@@ -21,8 +22,9 @@ router.route('/add').post((req, res) => {
     const newSummary = new Summary({
         username,
         nicotine,
-        excersice_duration,
-        excersice_sport,
+        excersice,
+        sleep_start,
+        sleep_stop,
         meditation,
         mood,
         date

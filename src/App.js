@@ -13,7 +13,7 @@ export default class App extends Component {
         <Route path="/" exact component={Login}/>
         <Route path="/signup" component={Signup}/>
         <Route path="/home" exact component={FrontPage}/>
-        <Route path="/summaries/add" exact component {AddSummary}/>
+        <Route path="/summaries/add" exact component={AddSummary}/>
       </Router>
       </div>
     )
