@@ -2,7 +2,8 @@
     width: 100vw;
     height: 100vh;
     margin: 0;
-    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);    text-align: center;
+    background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+    text-align: center;
 }
 
 .homescreen-grid {
@@ -17,39 +18,38 @@
 .name,
 .add-summary {
     grid-column: 2/5;
-    color: white;
+    color: rgb(73, 61, 66)
 }
 
 .welcome {
-    grid-row: 3;
+    grid-row: 2;
     font-size: 3em;
 }
 
 .name {
-    grid-row: 4;
-    font-size: 2em;  
+    grid-row: 3;
+    font-size: 2em;
 }
 
 .add-summary {
-    grid-row: 8;
+    grid-row: 9;
     align-self: center;
 }
 
 .button-container {
-    grid-column: 3;
-    grid-row: 7;
+    grid-column: 2/5;
+    grid-row: 7/9;
 }
 
 .add-btn {
     border: 0.1px solid black;
     align-self: center;
     justify-self: center;
-    background-color: rgb(238,174,202);
-    border-radius: 100%;
+    border-radius: 50%;
     color: white;
-    font-size: 4em;
-    width: 20vh;
-    height: 20vh;
+    height: 90%;
+    width: auto;
+    background-color: rgba(148, 187, 233, 0.3);
 }
 
 
@@ -85,6 +85,7 @@ img {
     width: 2em;
     height: auto;
 }
+
 /*-------------------------------------*/
 
 
@@ -103,7 +104,7 @@ img {
     text-align: left;
 }
 
-.menu-ul > li {
+.menu-ul>li {
     padding: 1em;
     font-size: 1.5em;
     border-bottom: 1px solid grey;

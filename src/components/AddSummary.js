@@ -69,6 +69,10 @@ export default class AddSummary extends Component {
     };
 
     this.onChangeHandler = this.onChangeHandler.bind(this);
+    this.clickBack = this.clickBack.bind(this);
+    this.clickNext = this.clickNext.bind(this);
+    this.clickExit = this.clickExit.bind(this);
+    this.clickSubmit = this.clickSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -181,7 +185,7 @@ export default class AddSummary extends Component {
               type="range"
               min={current.min}
               max={current.max}
-              defaultValue={current.min}
+              value={this.state[_tag]}
               step={current.step}
               onChange={e => this.onChangeHandler(e, current.tag)}
               className="slider"
