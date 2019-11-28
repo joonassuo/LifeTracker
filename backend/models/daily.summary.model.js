@@ -2,14 +2,38 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const dailySummarySchema = new Schema({
-    username: { type: String, required: true },
-    nicotine: { type: Number, required: true },
-    excersice: { type: Number, required: true },
-    sleep_start: { type: Number, required: true },
-    sleep_stop: { type: Number, required: true },
-    meditation: { type: Number, required: true },
-    mood: { type: Number, required: true },
-    date: { type: Date, required: true}
+    userId: {
+        type: String,
+        required: true
+    },
+    hit_the_sack: {
+        type: Number,
+        required: true
+    },
+    wake_up: {
+        type: Number,
+        required: true
+    },
+    nicotine: {
+        type: Number,
+        required: true
+    },
+    excersice: {
+        type: Number,
+        required: true
+    },
+    meditation: {
+        type: Number,
+        required: true
+    },
+    mood: {
+        type: Number,
+        required: true
+    },
+    date: {
+        type: Date,
+        required: true
+    }
 }, {
     timestamps: true,
 });

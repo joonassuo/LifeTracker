@@ -10,21 +10,21 @@ router.route('/').get((req, res) => {
 // ROUTE TO ADD A SUMMARY
 router.route('/add').post((req, res) => {
     let r = req.body;
-    const username = r.username; 
-    const nicotine = Number(r.nicotine);
+    const userId = r.userId;
+    const hit_the_sack = r.hit_the_sack;
+    const wake_up = r.wake_up;
+    const nicotine = r.nicotine;
     const excersice = r.excersice;
-    const sleep_start = r.sleep_start;
-    const sleep_stop = r.sleep_stop;
-    const meditation = Number(r.meditation);
-    const mood = Number(r.mood);
-    const date = Date.parse(r.date);
+    const meditation = r.meditation;
+    const mood = r.mood;
+    const date = r.date;
 
     const newSummary = new Summary({
-        username,
+        userId,
+        hit_the_sack,
+        wake_up,
         nicotine,
         excersice,
-        sleep_start,
-        sleep_stop,
         meditation,
         mood,
         date

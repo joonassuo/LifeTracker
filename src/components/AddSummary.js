@@ -88,6 +88,7 @@ export default class AddSummary extends Component {
   }
 
   onChangeHandler = (e, object) => {
+    e.preventDefault();
     this.setState({
       [object]: e.target.value
     });
@@ -107,6 +108,41 @@ export default class AddSummary extends Component {
         currentIndex: this.state.currentIndex - 1
       });
     }
+  };
+
+  clickExit = () => {
+    this.setState({
+      hit_the_sack: 0,
+      wake_up: 0,
+      nicotine: 0,
+      excersice: 0,
+      meditation: 0,
+      mood: 0,
+      currentIndex: 0
+    });
+    window.location = "/home";
+  };
+
+  clickSubmit = () => {
+    const newSummary = {
+      userId: this.state.userId,
+      hit_the_sack: this.state.hit_the_sack,
+      wake_up: this.state.wake_up,
+      nicotine: this.state.nicotine,
+      excersice: this.state.excersice,
+      meditation: this.state.meditation,
+      mood: this.state.mood,
+      date: Date.now()
+    };
+
+    axios
+      .post("http://localhost:5000/summaries/add", newSummary)
+      .then(res => console.log(res))
+      .then(window.alert("Summary added !"))
+      .then(() => {
+        window.location = "/home";
+      })
+      .catch(err => console.log("Error : " + err));
   };
 
   render() {
@@ -129,11 +165,14 @@ export default class AddSummary extends Component {
     return (
       <div>
         <div className="summary-grid">
+          <button className="exit-btn" onClick={this.clickExit}>
+            X
+          </button>
           <div className="tag">
             {current.tag.toUpperCase().replace(/_/g, " ")}
           </div>
           <div className="summary-icon">
-            <img src="/like.png" alt="icon" />
+            <img src={"/" + _tag + ".png"} alt="icon" />
           </div>
           <div className="description">{current.text}</div>
           <div className="value">{value}</div>
@@ -149,11 +188,19 @@ export default class AddSummary extends Component {
             />
           </div>
           <button className="back" onClick={this.clickBack}>
-            BACK
+            back
           </button>
-          <button className="next" onClick={this.clickNext}>
-            NEXT
-          </button>
+          <div className="next-container">
+            {this.state.currentIndex === statesArray.length - 1 ? (
+              <button className="submit-btn" onClick={this.clickSubmit}>
+                submit
+              </button>
+            ) : (
+              <button className="next-btn" onClick={this.clickNext}>
+                next
+              </button>
+            )}
+          </div>
         </div>
       </div>
     );
