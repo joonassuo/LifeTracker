@@ -1,21 +1,19 @@
-import React, { Component } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import FrontPage from "./components/test";
-import Login from "./components/Login.js";
-import Signup from "./components/Signup.js";
-import AddSummary from "./components/AddSummary.js";
+import FrontPage from "./components/Frontpage";
+import Login from "./components/test";
+import Signup from "./components/Signup";
+import AddSummary from "./components/AddSummary";
 
-export default class App extends Component {
-  render() {
-    return (
-      <div>
-        <Router>
-          <Route path="/" exact component={Login} />
-          <Route path="/signup" component={Signup} />
-          <Route path="/home" exact component={FrontPage} />
-          <Route path="/summaries/add" exact component={AddSummary} />
-        </Router>
-      </div>
-    );
-  }
-}
+const App = () => {
+  return (
+    <Router>
+      <Route path="/" exact component={Login} />
+      <Route path="/signup" component={Signup} />
+      <Route path="/home" exact component={FrontPage} />
+      <Route path="/summaries/add" exact component={AddSummary} />
+    </Router>
+  );
+};
+
+export default App;
