@@ -1,8 +1,7 @@
 const idReducer = (state = "testing", action) => {
     switch (action.type) {
         case 'UPDATE_ID':
-            state = action.id;
-            return state;
+            return action.id;
         default:
             return state;
     }
