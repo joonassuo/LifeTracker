@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 import { updateId } from "../actions";
 import "./Login.css";
@@ -9,6 +9,7 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [usersArray, setUsersArray] = useState([]);
+  const [success, setSuccess] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -34,9 +35,8 @@ const Login = () => {
       msg.innerHTML = "Wrong username or password";
     } else {
       if (password === user.password) {
-        console.log(user._id);
         dispatch(updateId(user._id));
-        window.location = "/home";
+        setSuccess(true);
       } else {
         pswrd.value = "";
         usrnm.value = "";
@@ -55,7 +55,9 @@ const Login = () => {
     setPassword(e.target.value);
   };
 
-  return (
+  return success ? (
+    <Redirect to="/home" />
+  ) : (
     <div>
       <div className="login-screen">
         <div className="grid-container">
@@ -80,12 +82,14 @@ const Login = () => {
           </div>
           <div id="error-message-l" className="grid-center"></div>
           <div className="login-button-container fullwidth">
-            <button id="login-button" onClick={onLogin}>
-              LOGIN
-            </button>
+            <Link to="/home">
+              <button id="login-button" onClick={onLogin}>
+                LOGIN
+              </button>
+            </Link>
           </div>
           <div className="text-container">
-            <Link to="/signup"> Don 't have an account?</Link>
+            <Link to="/signup">Don 't have an account?</Link>
           </div>
         </div>
       </div>
