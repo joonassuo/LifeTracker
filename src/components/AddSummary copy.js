@@ -75,58 +75,60 @@ const AddSummary = () => {
       case 'hit_the_sack' :
         set_hit_the_sack(e.target.value);
         break ; 
-        case 'hit_the_sack' :
-            set_hit_the_sack(e.target.value);
-            break ;
-            case 'hit_the_sack' :
-        set_hit_the_sack(e.target.value);
+      case 'wake_up' :
+        set_wake_up(e.target.value);
         break ;
+      case 'nicotine' :
+        setNicotine(e.target.value);
+        break ;
+      case 'excercise' :
+        setExcercise(e.target.value);
+        break ;
+      case 'meditation' :
+        setMeditation(e.target.value);
+        break ;
+      case 'mood' :
+        setMood(e.target.value);
+        break ;
+      default :
+        return null;
     }
-
-
-    this.setState({
-      [object]: e.target.value
-    });
-  };
 
   const clickNext = () => {
-    if (this.state.currentIndex < statesArray.length - 1) {
-      this.setState({
-        currentIndex: this.state.currentIndex + 1
-      });
+    if (currentIndex < statesArray.length - 1) {
+      setCurrentIndex(currentIndex + 1);
     }
   };
 
-  clickBack = () => {
-    if (this.state.currentIndex > 0) {
-      this.setState({
-        currentIndex: this.state.currentIndex - 1
-      });
+  const clickBack = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
     }
   };
 
-  clickExit = () => {
-    this.setState({
-      hit_the_sack: 0,
-      wake_up: 0,
-      nicotine: 0,
-      excersice: 0,
-      meditation: 0,
-      mood: 0,
-      currentIndex: 0
-    });
+  // is this even necessary of will it reset the state on rerender?
+  const clickExit = () => {
+    set_hit_the_sack(0);
+    set_wake_up(0);
+    setNicotine(0);
+    setExcersice(0);
+    setMeditation(0);
+    setMood(0);
+    setCurrentIndex(0);
+
+    // change this
     window.location = "/home";
   };
 
-  clickSubmit = () => {
+  const clickSubmit = () => {
     const newSummary = {
-      userId: this.state.userId,
-      hit_the_sack: this.state.hit_the_sack,
-      wake_up: this.state.wake_up,
-      nicotine: this.state.nicotine,
-      excersice: this.state.excersice,
-      meditation: this.state.meditation,
-      mood: this.state.mood,
+      userId,
+      hit_the_sack,
+      wake_up,
+      nicotine,
+      excersice,
+      meditation,
+      mood,
       date: Date.now()
     };
 
@@ -135,6 +137,7 @@ const AddSummary = () => {
       .then(res => console.log(res))
       .then(window.alert("Summary added !"))
       .then(() => {
+        // change this 
         window.location = "/home";
       })
       .catch(err => console.log("Error : " + err));
@@ -178,7 +181,7 @@ const AddSummary = () => {
               max={current.max}
               value={this.state[_tag]}
               step={current.step}
-              onChange={e => this.onChangeHandler(e, current.tag)}
+              onChange={onChangeHandler(e, current.tag)}
               className="slider"
             />
           </div>
