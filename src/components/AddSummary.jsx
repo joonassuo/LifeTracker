@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./AddSummary.css";
 import { useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 const statesArray = [
   {
@@ -55,7 +56,6 @@ const statesArray = [
 
 const AddSummary = () => {
   const [userId, setUserId] = useState("");
-  //const [username, setUsername] = useState("");
   const [hit_the_sack, set_hit_the_sack] = useState(0);
   const [wake_up, set_wake_up] = useState(0);
   const [nicotine, setNicotine] = useState(0);
@@ -63,6 +63,7 @@ const AddSummary = () => {
   const [meditation, setMeditation] = useState(0);
   const [mood, setMood] = useState(0);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [exit, setExit] = useState(false);
   const id = useSelector(state => state.userId);
 
   useEffect(() => {
@@ -116,9 +117,7 @@ const AddSummary = () => {
     setMeditation(0);
     setMood(0);
     setCurrentIndex(0);
-
-    // change this
-    window.location = "/home";
+    setExit(true);
   };
 
   const clickSubmit = () => {
@@ -138,8 +137,7 @@ const AddSummary = () => {
       .then(res => console.log(res))
       .then(window.alert("Summary added !"))
       .then(() => {
-        // change this
-        window.location = "/home";
+        setExit(true);
       })
       .catch(err => console.log("Error : " + err));
   };
@@ -183,7 +181,9 @@ const AddSummary = () => {
     };
   };
 
-  return (
+  return exit ? (
+    <Redirect to="/home" />
+  ) : (
     <div>
       <div className="summary-grid">
         <button className="exit-btn" onClick={clickExit}>
