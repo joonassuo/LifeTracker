@@ -8,7 +8,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import FrontPage from "./components/Frontpage";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
-import AddSummary from "./components/AddSummary";
+import AddSummary from "./components/AddSummary.jsx";
 
 const store = createStore(
   rootReducer,
@@ -22,7 +22,7 @@ ReactDOM.render(
       <Route path="/signup" component={Signup} />{" "}
       <Route path="/home" exact component={FrontPage} />{" "}
       <Route path="/summaries/add" exact component={AddSummary} />{" "}
-    </Router>
+    </Router>{" "}
   </Provider>,
   document.getElementById("root")
 );
