@@ -21,12 +21,56 @@ const Summary = () => {
     <ul>
       {userSummaries.reverse().map((summary, i) =>
         summary.userId === userId ? (
-          <li className="card-item" key={i}>
+          <li className="history-card" key={i}>
             <div className="date">
               <Moment format="DD/MM/YYYY">{summary.date}</Moment>
             </div>
-            <div>{summary.userId}</div>
-            <div>{summary.nicotine}</div>
+            <div className="history-card-item">
+              <img
+                className="history-card-item-icon"
+                src="/nicotine.png"
+                alt="nicotine"
+              />
+              <div className="history-card-item-value">{summary.nicotine}</div>
+            </div>
+            <div className="history-card-item">
+              <img
+                className="history-card-item-icon"
+                src="/meditation.png"
+                alt="meditation"
+              />
+              <div className="history-card-item-value">
+                {summary.meditation}
+              </div>
+            </div>
+            <div className="history-card-item">
+              <img
+                className="history-card-item-icon"
+                src="/excercise.png"
+                alt="excercise"
+              />
+              <div className="history-card-item-value">{summary.excersice}</div>
+            </div>
+            <div className="history-card-item">
+              <img
+                className="history-card-item-icon"
+                src="/hit_the_sack.png"
+                alt="hit_the_sack"
+              />
+              <div className="history-card-item-value">
+                {summary.hit_the_sack}:00
+              </div>
+            </div>
+            <div className="history-card-item">
+              <img
+                className="history-card-item-icon"
+                src="/wake_up.png"
+                alt="wake_up"
+              />
+              <div className="history-card-item-value">
+                {summary.wake_up}:00
+              </div>
+            </div>
           </li>
         ) : null
       )}

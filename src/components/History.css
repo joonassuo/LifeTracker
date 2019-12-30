@@ -3,20 +3,29 @@ ul {
   width: 80%;
 }
 
-.card-item {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(4, 1fr);
+.history-card {
   border: 1px solid black;
   border-radius: 4px;
   margin-bottom: 8px;
-  color: red;
 }
 
 .date {
   text-align: center;
   background-color: aqua;
   padding: 5px;
-  grid-column: 1/6;
-  grid-row: 1;
+  margin-bottom: 20px;
+}
+
+.history-card-item {
+  width: 20%;
+  height: auto;
+  text-align: center;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.history-card-item-icon {
+  padding: 5px;
+  border: 1px solid lightgray;
+  border-radius: 50%;
 }
