@@ -1,0 +1,22 @@
+ul {
+  list-style: none;
+  width: 80%;
+}
+
+.card-item {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  border: 1px solid black;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  color: red;
+}
+
+.date {
+  text-align: center;
+  background-color: aqua;
+  padding: 5px;
+  grid-column: 1/6;
+  grid-row: 1;
+}

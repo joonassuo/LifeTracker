@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import Moment from "react-moment";
+import "./History.css";
 
 const Summary = () => {
   const [userId, setUserId] = useState("");
@@ -17,12 +19,17 @@ const Summary = () => {
 
   return (
     <ul>
-      {userSummaries.map((summary, i) => (
-        <li key={i}>
-          <div>userId: {userId}</div>
-          <div>{summary.nicotine}</div>
-        </li>
-      ))}
+      {userSummaries.reverse().map((summary, i) =>
+        summary.userId === userId ? (
+          <li className="card-item" key={i}>
+            <div className="date">
+              <Moment format="DD/MM/YYYY">{summary.date}</Moment>
+            </div>
+            <div>{summary.userId}</div>
+            <div>{summary.nicotine}</div>
+          </li>
+        ) : null
+      )}
     </ul>
   );
 };
