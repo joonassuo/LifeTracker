@@ -9,6 +9,7 @@ import FrontPage from "./components/Frontpage";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import AddSummary from "./components/AddSummary.jsx";
+import History from "./components/History.jsx";
 
 const store = createStore(
   rootReducer,
@@ -22,6 +23,7 @@ ReactDOM.render(
       <Route path="/signup" component={Signup} />
       <Route path="/home" exact component={FrontPage} />
       <Route path="/summaries/add" exact component={AddSummary} />
+      <Route path="/history/home" exact component={History} />
     </Router>
   </Provider>,
   document.getElementById("root")

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Frontpage.css";
-import Menu from "./menu.component.js";
+import Menu from "./menu.component.jsx";
 import { useSelector } from "react-redux";
 
 const ToggleMenu = props => {
