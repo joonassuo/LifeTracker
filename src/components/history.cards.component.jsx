@@ -71,7 +71,7 @@ const HistoryCards = () => {
                   alt="hit_the_sack"
                 />
                 <div className="history-card-item-value">
-                  {summary.hit_the_sack}:00
+                  {summary.hit_the_sack % 24}:00
                 </div>
               </div>
               <div className="history-card-item">
@@ -81,7 +81,7 @@ const HistoryCards = () => {
                   alt="wake_up"
                 />
                 <div className="history-card-item-value">
-                  {summary.wake_up}:00
+                  {summary.wake_up % 24}:00
                 </div>
               </div>
             </div>
