@@ -1,81 +1,58 @@
-import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import axios from "axios";
-import Moment from "react-moment";
+import React, { useState } from "react";
 import "./History.css";
+import HistoryCards from "./history.cards.component";
+import Graph from "./history.graph.component";
 
-const Summary = () => {
-  const [userId, setUserId] = useState("");
-  const [userSummaries, setUserSummaries] = useState([]);
-  const id = useSelector(state => state.userId);
+const History = () => {
+  const [showCards, setShowCards] = useState(true);
+  const [showGraph, setShowGraph] = useState(false);
+  const [showAnalysis, setShowAnalysis] = useState(false);
 
-  useEffect(() => {
-    setUserId(id);
-    axios
-      .get("http://localhost:5000/summaries")
-      .then(res => setUserSummaries(res.data))
-      .catch(err => console.log(err));
-  }, [id, userSummaries]);
+  const historyOnclick = () => {
+    setShowCards(true);
+    setShowGraph(false);
+    setShowAnalysis(false);
+  };
+
+  const graphOnclick = () => {
+    setShowCards(false);
+    setShowGraph(true);
+    setShowAnalysis(false);
+  };
+
+  const analysisOnclick = () => {
+    setShowCards(false);
+    setShowGraph(false);
+    setShowAnalysis(true);
+  };
 
   return (
-    <ul>
-      {userSummaries.reverse().map((summary, i) =>
-        summary.userId === userId ? (
-          <li className="history-card" key={i}>
-            <div className="date">
-              <Moment format="DD/MM/YYYY">{summary.date}</Moment>
-            </div>
-            <div className="history-card-item">
-              <img
-                className="history-card-item-icon"
-                src="/nicotine.png"
-                alt="nicotine"
-              />
-              <div className="history-card-item-value">{summary.nicotine}</div>
-            </div>
-            <div className="history-card-item">
-              <img
-                className="history-card-item-icon"
-                src="/meditation.png"
-                alt="meditation"
-              />
-              <div className="history-card-item-value">
-                {summary.meditation}
-              </div>
-            </div>
-            <div className="history-card-item">
-              <img
-                className="history-card-item-icon"
-                src="/excercise.png"
-                alt="excercise"
-              />
-              <div className="history-card-item-value">{summary.excersice}</div>
-            </div>
-            <div className="history-card-item">
-              <img
-                className="history-card-item-icon"
-                src="/hit_the_sack.png"
-                alt="hit_the_sack"
-              />
-              <div className="history-card-item-value">
-                {summary.hit_the_sack}:00
-              </div>
-            </div>
-            <div className="history-card-item">
-              <img
-                className="history-card-item-icon"
-                src="/wake_up.png"
-                alt="wake_up"
-              />
-              <div className="history-card-item-value">
-                {summary.wake_up}:00
-              </div>
-            </div>
-          </li>
-        ) : null
-      )}
-    </ul>
+    <div className="history-container">
+      <div className="history-navbar">
+        <div className="navbar-history" onClick={() => historyOnclick()}>
+          history
+        </div>
+        <div className="navbar-graph" onClick={() => graphOnclick()}>
+          graph
+        </div>
+        <div className="navbar-analysis" onClick={() => analysisOnclick()}>
+          analysis
+        </div>
+      </div>
+      <div className="content">
+        {showCards ? (
+          <div>
+            <HistoryCards />
+          </div>
+        ) : showGraph ? (
+          <div>
+            <Graph />
+          </div>
+        ) : showAnalysis ? (
+          <div>analysis</div>
+        ) : null}
+      </div>
+    </div>
   );
 };
-
-export default Summary;
+export default History;
