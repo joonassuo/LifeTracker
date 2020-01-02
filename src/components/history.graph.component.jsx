@@ -60,7 +60,7 @@ const Graph = () => {
         });
       })
       .catch(err => console.log(err));
-  }, [userData]);
+  }, []);
 
   const test = () => {
     console.log("click");
