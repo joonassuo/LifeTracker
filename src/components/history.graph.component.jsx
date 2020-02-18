@@ -6,75 +6,123 @@ import axios from "axios";
 const Graph = () => {
 	const id = useSelector(state => state.userId);
 	const [userData, setUserData] = useState([]);
-	const [data, setData] = useState({
-		labels: [],
-		datasets: [
-			{
-				data: [],
-				label: "Wake Up",
-				borderColor: "#3e95cd",
-				fill: false
-			},
-			{
-				data: [],
-				label: "Sleep",
-				borderColor: "#8e5ea2",
-				fill: false
-			},
-			{
-				data: [],
-				label: "Nicotine",
-				borderColor: "#3cba9f",
-				fill: false
-			},
-			{
-				data: [],
-				label: "Excercise",
-				borderColor: "#e8c3b9",
-				fill: false
-			},
-			{
-				data: [],
-				label: "Meditation",
-				borderColor: "#c45850",
-				fill: false
-			},
-			{
-				data: [],
-				label: "Mood",
-				borderColor: "#c45850",
-				fill: false
-			}
-		]
-	});
+	const [isLoaded, setIsLoaded] = useState(false);
+	let wakeUp_d;
+	let goToBed_d;
+	let nicotine_d;
+	let excersice_d;
+	let meditation_d;
+	let mood_d;
+
+	const makeDataStruct = (dates, data, label, borderColor, fill) => {
+		const res = {
+			labels: dates,
+			datasets: [
+				{
+					data: data,
+					label: label,
+					borderColor: borderColor,
+					fill: fill
+				}
+			]
+		};
+		return res;
+	};
+
+	const getData = data => {
+		var res = {
+			wake_up: [],
+			hit_the_sack: [],
+			nicotine: [],
+			excersice: [],
+			meditation: [],
+			mood: []
+		};
+
+		for (let i = 0; i < data.length; i++) {
+			res.wake_up.push(data[i].wake_up);
+			res.hit_the_sack.push(data[i].hit_the_sack);
+			res.nicotine.push(data[i].nicotine);
+			res.excersice.push(data[i].excersice);
+			res.meditation.push(data[i].meditation);
+			res.mood.push(data[i].mood);
+		}
+		return res;
+	};
 
 	useEffect(() => {
 		axios
 			.get("http://localhost:5000/summaries")
 			.then(res => {
-				setUserData(res.data);
+				const d = res.data.filter(el => {
+					return el.userId === id;
+				});
+				setUserData(d);
 			})
 			.catch(err => console.log(err));
-	}, []);
+	}, id);
 
 	const test = () => {
+		const dates = [];
 		userData.forEach(e => {
-			data.labels.push(e.date.substr(5, 5));
-			data.datasets[0].data.push(e.wake_up);
-			data.datasets[1].data.push(e.hit_the_sack);
-			data.datasets[2].data.push(e.nicotine);
-			data.datasets[3].data.push(e.excersice);
-			data.datasets[4].data.push(e.meditation);
-			data.datasets[5].data.push(e.mood);
+			dates.push(e.date.substr(5, 5));
 		});
+		const data = getData(userData);
+		console.log(data.mood);
+
+		wakeUp_d = makeDataStruct(
+			dates,
+			getData(data.wake_up),
+			"Wake Up",
+			"rgba(157, 133, 141, 1)",
+			false
+		);
+		goToBed_d = makeDataStruct(
+			dates,
+			getData(data.hit_the_sack),
+			"Go to Bed",
+			"rgba(187, 160, 178, 1)",
+			false
+		);
+		nicotine_d = makeDataStruct(
+			dates,
+			getData(data.nicotine),
+			"Nicotine",
+			"rgba(164, 168, 209, 1)",
+			false
+		);
+		excersice_d = makeDataStruct(
+			dates,
+			getData(data.excersice),
+			"Excersice",
+			"rgba(164, 191, 235, 1)",
+			false
+		);
+		meditation_d = makeDataStruct(
+			dates,
+			getData(data.meditation),
+			"Meditation",
+			"rgba(140, 171, 190, 1)",
+			false
+		);
+		mood_d = makeDataStruct(
+			dates,
+			getData(data.mood),
+			"Mood",
+			"rgba(140, 171, 190, 1)",
+			false
+		);
+		console.log(mood_d);
+
+		setIsLoaded(true);
 	};
 
 	return (
 		<div>
 			<div className="chart">
-				<Line data={data} />
+				{isLoaded ? <Line data={mood_d} /> : <div>Loading</div>}
+				<button onClick={() => test()}>X</button>
 			</div>
-			<button onClick={() => test()}>X</button>
 		</div>
 	);
 };
