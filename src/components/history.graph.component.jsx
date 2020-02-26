@@ -5,28 +5,47 @@ import axios from "axios";
 
 const Graph = () => {
 	const id = useSelector(state => state.userId);
-	const [userData, setUserData] = useState([]);
 	const [isLoaded, setIsLoaded] = useState(false);
-	let wakeUp_d;
-	let goToBed_d;
-	let nicotine_d;
-	let excersice_d;
-	let meditation_d;
-	let mood_d;
 
-	const makeDataStruct = (dates, data, label, borderColor, fill) => {
+	const [wakeUp_d, setWakeUp_d] = useState([]);
+	const [goToBed_d, setGoToBed_d] = useState([]);
+	const [nicotine_d, setNicotine_d] = useState([]);
+	const [excersice_d, setExcersice_d] = useState([]);
+	const [meditation_d, setMeditation_d] = useState([]);
+	const [mood_d, setMood_d] = useState([]);
+
+	const makeDataStruct = (dates, data, label, borderColor) => {
 		const res = {
 			labels: dates,
 			datasets: [
 				{
-					data: data,
-					label: label,
-					borderColor: borderColor,
-					fill: fill
+					data,
+					label,
+					borderColor
 				}
 			]
 		};
 		return res;
+	};
+
+	var options = {
+		fill: false,
+		scales: {
+			xAxes: [
+				{
+					gridLines: {
+						display: false
+					}
+				}
+			],
+			yAxes: [
+				{
+					gridLines: {
+						display: false
+					}
+				}
+			]
+		}
 	};
 
 	const getData = data => {
@@ -57,71 +76,85 @@ const Graph = () => {
 				const d = res.data.filter(el => {
 					return el.userId === id;
 				});
-				setUserData(d);
+				return d;
+			})
+			.then(res => {
+				const dates = [];
+				res.forEach(e => {
+					dates.push(e.date.substr(5, 5));
+				});
+				const data = getData(res);
+
+				setWakeUp_d(
+					makeDataStruct(
+						dates,
+						data.wake_up,
+						"Wake Up",
+						"rgba(157, 133, 141, 1)"
+					)
+				);
+				setGoToBed_d(
+					makeDataStruct(
+						dates,
+						data.hit_the_sack,
+						"Go to Bed",
+						"rgba(187, 160, 178, 1)"
+					)
+				);
+				setNicotine_d(
+					makeDataStruct(
+						dates,
+						data.nicotine,
+						"Nicotine",
+						"rgba(164, 168, 209, 1)"
+					)
+				);
+				setExcersice_d(
+					makeDataStruct(
+						dates,
+						data.excersice,
+						"Excersice",
+						"rgba(164, 191, 235, 1)"
+					)
+				);
+				setMeditation_d(
+					makeDataStruct(
+						dates,
+						data.meditation,
+						"Meditation",
+						"rgba(140, 171, 190, 1)"
+					)
+				);
+				setMood_d(
+					makeDataStruct(
+						dates,
+						data.mood,
+						"Mood",
+						"rgba(140, 171, 190, 1)"
+					)
+				);
+			})
+			.then(() => {
+				setIsLoaded(true);
 			})
 			.catch(err => console.log(err));
-	}, id);
-
-	const test = () => {
-		const dates = [];
-		userData.forEach(e => {
-			dates.push(e.date.substr(5, 5));
-		});
-		const data = getData(userData);
-		console.log(data.mood);
-
-		wakeUp_d = makeDataStruct(
-			dates,
-			getData(data.wake_up),
-			"Wake Up",
-			"rgba(157, 133, 141, 1)",
-			false
-		);
-		goToBed_d = makeDataStruct(
-			dates,
-			getData(data.hit_the_sack),
-			"Go to Bed",
-			"rgba(187, 160, 178, 1)",
-			false
-		);
-		nicotine_d = makeDataStruct(
-			dates,
-			getData(data.nicotine),
-			"Nicotine",
-			"rgba(164, 168, 209, 1)",
-			false
-		);
-		excersice_d = makeDataStruct(
-			dates,
-			getData(data.excersice),
-			"Excersice",
-			"rgba(164, 191, 235, 1)",
-			false
-		);
-		meditation_d = makeDataStruct(
-			dates,
-			getData(data.meditation),
-			"Meditation",
-			"rgba(140, 171, 190, 1)",
-			false
-		);
-		mood_d = makeDataStruct(
-			dates,
-			getData(data.mood),
-			"Mood",
-			"rgba(140, 171, 190, 1)",
-			false
-		);
-		console.log(mood_d);
-
-		setIsLoaded(true);
-	};
+	}, [id]);
 
 	return (
 		<div>
 			<div className="chart">
-				{isLoaded ? <Line data={mood_d} /> : <div>Loading</div>}
-				<button onClick={() => test()}>X</button>
+				{isLoaded ? (
+					<div>
+						<Line data={goToBed_d} options={options} />
+						<Line data={wakeUp_d} options={options} />
+						<Line data={nicotine_d} options={options} />
+						<Line data={excersice_d} options={options} />
+						<Line data={meditation_d} options={options} />
+						<Line data={mood_d} options={options} />
+					</div>
+				) : (
+					<div>Loading</div>
+				)}
 			</div>
 		</div>
 	);
