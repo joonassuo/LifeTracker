@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { Line } from "react-chartjs-2";
 import axios from "axios";
 import "./History.css";
-import "chartjs-plugin-colorschemes";
 
 const Graph = () => {
 	const id = useSelector(state => state.userId);
@@ -16,13 +15,14 @@ const Graph = () => {
 	const [meditation_d, setMeditation_d] = useState([]);
 	const [mood_d, setMood_d] = useState([]);
 
-	const makeDataStruct = (dates, data, label) => {
+	const makeDataStruct = (dates, data, label, color) => {
 		const res = {
 			labels: dates,
 			datasets: [
 				{
 					data,
-					label
+					label,
+					backgroundColor: color
 				}
 			]
 		};
@@ -30,11 +30,6 @@ const Graph = () => {
 	};
 
 	var options = {
-		plugins: {
-			colorschemes: {
-				scheme: "brewer.Paired2"
-			}
-		},
 		layout: {
 			padding: {
 				left: 30,
@@ -108,24 +103,51 @@ const Graph = () => {
 				return d;
 			})
 			.then(res => {
+				const colors = [
+					"rgba(37, 142, 166, 1)",
+					"rgba(84, 159, 147, 1)",
+					"rgba(159, 175, 144, 1)",
+					"rgba(226, 177, 177, 1)",
+					"rgba(226, 194, 255, 1)",
+					"rgba(37, 142, 166, 1)"
+				];
 				const dates = [];
 				res.forEach(e => {
 					dates.push(e.date.substr(5, 5));
 				});
 				const data = getData(res);
 
-				setWakeUp_d(makeDataStruct(dates, data.wake_up, "Wake Up"));
-				setGoToBed_d(
-					makeDataStruct(dates, data.hit_the_sack, "Go to Bed")
+				setWakeUp_d(
+					makeDataStruct(dates, data.wake_up, "Wake Up", colors[0])
 				);
-				setNicotine_d(makeDataStruct(dates, data.nicotine, "Nicotine"));
+				setGoToBed_d(
+					makeDataStruct(
+						dates,
+						data.hit_the_sack,
+						"Go to Bed",
+						colors[1]
+					)
+				);
+				setNicotine_d(
+					makeDataStruct(dates, data.nicotine, "Nicotine", colors[2])
+				);
 				setExcersice_d(
-					makeDataStruct(dates, data.excersice, "Excersice")
+					makeDataStruct(
+						dates,
+						data.excersice,
+						"Excersice",
+						colors[3]
+					)
 				);
 				setMeditation_d(
-					makeDataStruct(dates, data.meditation, "Meditation")
+					makeDataStruct(
+						dates,
+						data.meditation,
+						"Meditation",
+						colors[4]
+					)
 				);
-				setMood_d(makeDataStruct(dates, data.mood, "Mood"));
+				setMood_d(makeDataStruct(dates, data.mood, "Mood", colors[5]));
 			})
 			.then(() => {
 				setIsLoaded(true);
@@ -138,18 +160,18 @@ const Graph = () => {
 			<div className="chart-container">
 				{isLoaded ? (
 					<div>
+						<p className="legend">GO TO BED</p>
 						<Line data={goToBed_d} options={options} />
-						GO TO BED
+						<p className="legend">WAKE UP</p>
 						<Line data={wakeUp_d} options={options} />
-						WAKE UP
+						<p className="legend">NICOTINE</p>
 						<Line data={nicotine_d} options={options} />
-						NICOTINE
+						<p className="legend">EXCERSICE</p>
 						<Line data={excersice_d} options={options} />
-						EXCERSICE
+						<p className="legend">MEDITATION</p>
 						<Line data={meditation_d} options={options} />
-						MEDITATION
+						<p className="legend">MOOD</p>
 						<Line data={mood_d} options={options} />
-						MOOD
 					</div>
 				) : (
 					<div>Loading</div>

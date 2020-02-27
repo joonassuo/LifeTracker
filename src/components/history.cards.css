@@ -1,39 +1,51 @@
 ul {
-  list-style: none;
-  width: 80%;
+	position: relative;
+	top: 10vh;
+	list-style: none;
+	width: 80%;
 }
 
 .data-container {
-  position: relative;
-  left: 50%;
-  width: 80%;
-  transform: translateX(-50%);
-  margin-bottom: 10px;
+	position: relative;
+	left: 50%;
+	width: 100%;
+	transform: translateX(-50%);
+	margin-bottom: 10px;
 }
 
 .history-card {
-  border: 1px solid black;
-  border-radius: 4px;
-  margin-bottom: 15px;
-  text-align: center;
+	/*
+	background: radial-gradient(
+		circle,
+		rgba(238, 174, 202, 1) 0%,
+		rgba(148, 187, 233, 1) 100%
+	);
+	*/
+	border: 1px solid grey;
+	border-radius: 4px;
+	margin-bottom: 15px;
+	text-align: center;
+	-webkit-box-shadow: 9px 9px 9px -8px rgba(0, 0, 0, 0.75);
+	-moz-box-shadow: 9px 9px 9px -8px rgba(0, 0, 0, 0.75);
+	box-shadow: 9px 9px 9px -8px rgba(0, 0, 0, 0.75);
 }
 
 .date {
-  text-align: center;
-  background-color: aqua;
-  padding: 5px;
-  margin-bottom: 20px;
+	color: white;
+	text-align: center;
+	background-color: rgba(65, 131, 218, 0.4);
+	padding: 10px;
+	margin-bottom: 20px;
 }
 
 .history-card-item {
-  width: 33%;
-  height: auto;
-  text-align: center;
-  display: inline-block;
+	padding: 15px;
+	width: 20%;
+	height: auto;
+	text-align: center;
+	display: inline-block;
 }
 
 .history-card-item-icon {
-  padding: 5px;
-  border: 1px solid lightgray;
-  border-radius: 50%;
+	padding: 5px;
 }

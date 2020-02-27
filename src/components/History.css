@@ -8,36 +8,22 @@
 	grid-template-rows: 1fr;
 	grid-template-columns: 1fr 1fr 1fr;
 	text-align: center;
-	background-color: lightgreen;
+	background-color: antiquewhite;
+}
+
+.legend {
+	margin-top: 2em;
+	margin-bottom: -1em;
 }
 
 .chart-container {
+	position: relative;
+	top: 10vh;
 	text-align: center;
 }
 
 .history-container {
-	position: relative;
-	top: 10vh;
-	width: 100%;
-	height: 80%;
-}
-
-.slider-container {
-	width: 400px;
-	height: 200pxs;
-	position: fixed; /* add this code for position fixed */
-	top: 0px; /* set top and left 0 */
-	left: 0px;
-}
-.slider-item-div {
-	padding: 20px;
-	background-color: white;
-	text-align: center;
-	height: 100%;
-	width: 100%;
-}
-.carousel-style {
-	height: 100% !important;
+	margin: 0 !important;
 }
 
 .navbar-history,
@@ -57,4 +43,9 @@
 
 .navbar-analysis {
 	grid-column: 3;
+}
+
+.content {
+	width: 100%;
+	height: auto;
 }
