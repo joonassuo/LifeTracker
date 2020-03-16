@@ -1,0 +1,51 @@
+.history-navbar {
+	position: fixed;
+	top: 0;
+	width: 100vw;
+	height: 10vh;
+	z-index: 1;
+	display: grid;
+	grid-template-rows: 1fr;
+	grid-template-columns: 1fr 1fr 1fr;
+	text-align: center;
+	background-color: antiquewhite;
+}
+
+.legend {
+	margin-top: 2em;
+	margin-bottom: -1em;
+}
+
+.chart-container {
+	position: relative;
+	top: 10vh;
+	text-align: center;
+}
+
+.history-container {
+	margin: 0 !important;
+}
+
+.navbar-history,
+.navbar-graph,
+.navbar-analysis {
+	grid-row: 1;
+	margin-top: 3vh;
+}
+
+.navbar-history {
+	grid-column: 1;
+}
+
+.navbar-graph {
+	grid-column: 2;
+}
+
+.navbar-analysis {
+	grid-column: 3;
+}
+
+.content {
+	width: 100%;
+	height: auto;
+}
