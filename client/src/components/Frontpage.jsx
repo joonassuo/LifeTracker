@@ -24,7 +24,7 @@ const FrontPage = () => {
 
 	useEffect(() => {
 		axios
-			.get("http://localhost:5000/users")
+			.get("/users")
 			.then(res => {
 				const d = res.data.find(e => e._id === id);
 				setUsername(d.username);

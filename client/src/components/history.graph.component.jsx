@@ -95,7 +95,7 @@ const Graph = () => {
 
 	useEffect(() => {
 		axios
-			.get("http://localhost:5000/summaries")
+			.get("/summaries")
 			.then(res => {
 				const d = res.data.filter(el => {
 					return el.userId === id;
