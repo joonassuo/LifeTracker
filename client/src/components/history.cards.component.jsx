@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import Moment from "react-moment";
-import "./history.cards.css";
+import "./css/history.cards.css";
 
 const HistoryCards = () => {
 	const [userId, setUserId] = useState("");

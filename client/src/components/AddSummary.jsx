@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./AddSummary.css";
+import "./css/AddSummary.css";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 

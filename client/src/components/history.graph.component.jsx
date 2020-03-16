@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Line } from "react-chartjs-2";
 import axios from "axios";
-import "./History.css";
+import "./css/History.css";
 
 const Graph = () => {
 	const id = useSelector(state => state.userId);

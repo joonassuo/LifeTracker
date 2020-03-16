@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 import { updateId } from "../actions";
-import "./Login.css";
+import "./css/Login.css";
 
 const Login = () => {
 	const [username, setUsername] = useState("");

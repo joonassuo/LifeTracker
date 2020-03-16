@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
-import "./Signup.css";
+import "./css/Signup.css";
+import { Redirect } from "react-router-dom";
 
 export default class Signup extends Component {
 	constructor(props) {
@@ -20,7 +21,8 @@ export default class Signup extends Component {
 			passwordConfirm: "",
 			creationDate: new Date(),
 			usersArray: [],
-			emailsArray: []
+			emailsArray: [],
+			exit: false
 		};
 	}
 
@@ -123,9 +125,21 @@ export default class Signup extends Component {
 		}
 	};
 
+	clickExit = e => {
+		e.preventDefault();
+		this.setState({
+			exit: true
+		});
+	};
+
 	render() {
-		return (
+		return this.state.exit ? (
+			<Redirect to="/" />
+		) : (
 			<div>
+				<button className="exit" onClick={this.clickExit}>
+					X
+				</button>
 				<div className="signup-screen">
 					<div className="s-grid-container">
 						<div className="s-logo-container fullwidth">

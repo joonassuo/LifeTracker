@@ -6,9 +6,16 @@
 	z-index: 1;
 	display: grid;
 	grid-template-rows: 1fr;
-	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-columns: repeat(7, 1fr);
 	text-align: center;
 	background-color: antiquewhite;
+}
+
+.left-arrow {
+	grid-row: 1;
+	grid-column: 1;
+	justify-self: center;
+	align-self: center;
 }
 
 .legend {
@@ -30,19 +37,16 @@
 .navbar-graph,
 .navbar-analysis {
 	grid-row: 1;
-	margin-top: 3vh;
+	align-self: center;
+	justify-self: center;
 }
 
 .navbar-history {
-	grid-column: 1;
+	grid-column: 3;
 }
 
 .navbar-graph {
-	grid-column: 2;
-}
-
-.navbar-analysis {
-	grid-column: 3;
+	grid-column: 5;
 }
 
 .content {

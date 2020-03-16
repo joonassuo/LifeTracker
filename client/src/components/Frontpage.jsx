@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "./Frontpage.css";
+import "./css/Frontpage.css";
 import Menu from "./menu.component.jsx";
 import { useSelector } from "react-redux";
 import axios from "axios";
