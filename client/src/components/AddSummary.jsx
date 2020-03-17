@@ -198,7 +198,7 @@ const AddSummary = () => {
 					<img src={"/" + getValue()._tag + ".png"} alt="icon" />
 				</div>
 				<div className="description"> {getValue().current.text} </div>
-				<div className="value">
+				<div className="value-s">
 					{currentIndex === 0
 						? (getValue().value % 24) + getValue().suffix
 						: getValue().value + getValue().suffix}
