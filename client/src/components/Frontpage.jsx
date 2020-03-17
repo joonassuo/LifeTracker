@@ -4,6 +4,8 @@ import "./css/Frontpage.css";
 import Menu from "./menu.component.jsx";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from "react-loader-spinner";
 
 const ToggleMenu = props => {
 	if (!props.show) {
@@ -62,7 +64,16 @@ const FrontPage = () => {
 							/>
 						</Link>
 					</div>
-				) : null}
+				) : (
+					<div className="loader">
+						<Loader
+							type="BallTriangle"
+							color="rgba(148, 187, 233, 1)"
+							height={80}
+							width={80}
+						/>
+					</div>
+				)}
 			</div>
 		</div>
 	);
